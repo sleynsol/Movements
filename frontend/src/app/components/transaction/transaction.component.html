@@ -1,0 +1,112 @@
+<ion-card [ngClass]="expanded ? 'expanded' : ''">
+
+  <ng-container [ngSwitch]="transaction.type">
+
+    <div class="card-wrapper" *ngSwitchCase="'TOKEN_TRANSFER'">
+      <!-- Token Transfer -->
+      <div class="header">
+        <ng-container class="token">
+          <img class="token" [src]="getTokenImage()" height="48" width="48"/>
+        </ng-container>
+
+        <div class="receive-info">
+          <span class="other">{{getOther(transaction.tokenTransfers[0])}}</span>
+          <span class="timestamp">{{transaction.timestamp | datetime}}</span>
+        </div>
+      </div>
+
+      <div class="tx-container" [ngClass]="isReceiver(transfer) ? 'tx-receive' : 'tx-sent' " *ngFor="let transfer of transaction.tokenTransfers">
+          <span>{{ transfer.tokenAmount }} {{getTokenSymbol()}}</span>
+      </div>
+    </div>
+
+    <div class="card-wrapper" *ngSwitchCase="'SOL_TRANSFER'">
+      <!-- SOL transfer -->
+        <div class="header">
+          <ng-container class="token">
+            <img class="token" src="assets/tokens/solana.webp" height="48" width="48"/>
+          </ng-container>
+
+          <div class="receive-info">
+            <span class="other">{{getOther(transaction.nativeTransfers[0])}}</span>
+            <span class="timestamp">{{transaction.timestamp | datetime}}</span>
+          </div>
+        </div>
+
+        <div class="tx-container" [ngClass]="isReceiver(transfer) ? 'tx-receive' : 'tx-sent' " *ngFor="let transfer of transaction.nativeTransfers">
+            <span>{{ getSolAmount(transfer.amount) }} SOL</span>
+        </div>
+      </div>
+
+        <!-- BURN -->
+        <div class="card-wrapper" *ngSwitchCase="'BURN'">
+          <div class="header">
+            <ng-container class="token">
+              <img class="token" src="assets/tokens/unknown.png" height="48" width="48"/>
+            </ng-container>
+  
+            <div class="receive-info">
+              <span class="other">
+                <ion-icon name="flame-outline"></ion-icon>
+                Burn
+              </span>
+              <span class="timestamp">{{transaction.timestamp | datetime}}</span>
+            </div>
+          </div>
+  
+        <div class="tx-container" *ngFor="let transfer of transaction.tokenTransfers">
+            <span class="burn">- {{ transfer.tokenAmount }}</span>
+        </div>
+      </div>
+
+
+    <div class="card-wrapper" *ngSwitchCase="'NFT'">
+
+      <div class="header">
+        <ng-container class="token">
+          <img class="token" [src]="getNftImage()" height="48" width="48"/>
+        </ng-container>
+
+        <div class="receive-info">
+          <span class="other">{{getMarketplaceName()}}</span>
+          <span class="timestamp">{{transaction.timestamp | datetime}}</span>
+        </div>
+      </div>
+
+      <div class="tx-container" [ngClass]="event.buyer == publicKey ? 'nft-receive' : 'nft-sent'">
+          <span>{{getNftName()}} for {{ getSolAmount(event.amount) }} SOL</span>
+      </div>
+
+    </div>
+
+    <div class="card-wrapper" *ngSwitchCase="'SWAP'">
+      <!-- Token Transfer -->
+      <div class="header">
+        <ng-container class="token">
+          <img class="token" [src]="getTokenImage()" height="48" width="48"/>
+        </ng-container>
+
+        <div class="receive-info">
+          <span class="other">{{getOther(transaction.tokenTransfers[0])}}</span>
+          <span class="timestamp">{{transaction.timestamp | datetime}}</span>
+        </div>
+      </div>
+
+      <div class="tx-container" [ngClass]="isReceiver(transfer) ? 'tx-receive' : 'tx-sent' " *ngFor="let transfer of transaction.tokenTransfers">
+          <span>{{ transfer.tokenAmount }} {{getTokenSymbol()}}</span>
+      </div>
+    </div>
+
+
+    <div *ngSwitchDefault>
+      Cant compile transaction type: 
+      <span>{{transaction.type}}</span>
+    </div>
+
+  </ng-container>
+
+  <div *ngIf="expanded" class="info">
+    <span>extra info</span>
+  </div>
+  
+</ion-card>

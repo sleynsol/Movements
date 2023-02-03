@@ -1,0 +1,119 @@
+ion-card {
+    padding: 16px;
+    height: 80px;
+    min-width: 440px;
+    max-width: 560px;
+    transition: all 0.25s ease-in-out;
+  }
+
+.expanded {
+  height: 200px;
+
+  .info {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+.card-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  justify-content: center;
+  align-items: center;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    border-radius: 50%;
+  }
+
+  .receive-info {
+    display: grid;
+    height: 100%;
+    grid-template-rows: 50% 50%;
+    justify-items: flex-start;
+    align-items: center;
+  }
+  
+  .other {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ion-icon {
+      padding-right: 8px;
+    }
+  }
+
+}
+
+.tx-container {
+  display: grid;
+  justify-items: flex-end;
+  align-items: center;
+  width: 100%;
+}
+
+
+.tx-receive {
+  color: green;
+  >span {
+      &::before {
+      content: '+';
+      padding-right: 4px;
+    }
+  }
+}
+
+.tx-sent {
+  color: coral;
+  >span {
+      &::before {
+      content: '-';
+      padding-right: 4px;
+    }
+  }
+}
+
+
+.nft-receive {
+  color: coral;
+  >span {
+      &::before {
+      content: 'Bought';
+      padding-right: 4px;
+    }
+
+  }
+}
+
+.nft-sent {
+  color: green;
+  >span {
+      &::before {
+      content: 'Sold';
+      padding-right: 4px;
+    }
+  }
+}
+
+.nft-mint {
+  color: coral;
+}
+
+.burn {
+  color: coral
+}
+
+
+
+  
+  

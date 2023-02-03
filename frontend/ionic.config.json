@@ -1,0 +1,7 @@
+{
+  "name": "tx-viewer",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
