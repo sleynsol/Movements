@@ -172,18 +172,6 @@ async function getTokenMetadata(mints: string[]) {
 }
 
 
-function extractTransactions(transactions: TransactionRich[], address: string) {
-    let txs = [];
-
-    for(let tx of transactions) {
-        let transfers = extractTransfers(tx, address)
-        console.log(tx.signature)
-        console.log(transfers)
-    }
-
-    return txs;
-}
-
 function extractTransfers(transaction: TransactionRich, address: string) {
 
     let transfers = new Map<string, number>();
@@ -229,9 +217,6 @@ function extractTransfers(transaction: TransactionRich, address: string) {
 
 export async function getPublicKeyFromSolDomain(domain: string):Promise<string>{
     const domainKey = await bonfida.getDomainKey(domain);
-    console.log(domainKey.pubkey.toString())
     const owner = (await bonfida.NameRegistryState.retrieve(CONNECTION, domainKey.pubkey)).registry.owner.toBase58();
-    //console.log(`The owner of SNS Domain: ${domain} is: `,owner);
-    console.log(owner)
     return owner
 }
