@@ -127,3 +127,12 @@ function extractTransfers(transaction: TransactionRich, address: string) {
     return transfers;
 
 }
+
+export async function getPublicKeyFromSolDomain(domain: string):Promise<string>{
+    const domainKey = await bonfida.getDomainKey(domain);
+    console.log(domainKey.pubkey.toString())
+    const owner = (await bonfida.NameRegistryState.retrieve(CONNECTION, domainKey.pubkey)).registry.owner.toBase58();
+    //console.log(`The owner of SNS Domain: ${domain} is: `,owner);
+    console.log(owner)
+    return owner
+}
