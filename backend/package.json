@@ -12,12 +12,14 @@
   "author": "Sleyn",
   "license": "ISC",
   "dependencies": {
+    "@bonfida/spl-name-service": "^0.1.64",
     "@solana/web3.js": "^1.73.0",
     "axios": "^1.2.3",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
     "express": "^4.18.2",
     "lodash": "^4.17.21",
+    "tweetnacl": "^1.0.3",
     "webpack-node-externals": "^3.0.0"
   },
   "devDependencies": {
