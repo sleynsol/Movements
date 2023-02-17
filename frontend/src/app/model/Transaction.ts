@@ -1,7 +1,7 @@
 import { NFTEvent } from "./NftEvent";
 
 export interface Transaction {
-    type: "SOL_TRANSFER" | "TOKEN_TRANSFER" | "NFT" | "SWAP" | "BURN",
+    type: "SOL_TRANSFER" | "TOKEN_TRANSFER" | "NFT" | "NFT_MINT" | "SWAP" | "BURN" ,
     source: string;
     signature: string;
     timestamp: number;
