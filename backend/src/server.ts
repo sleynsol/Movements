@@ -3,6 +3,7 @@ dotenv.config();
 import * as express from 'express';
 import * as cors from 'cors';
 import { initTransactionEndpoints } from './rest/transactions';
+import { initTransactionUtils } from './util/transaction-utils';
 
 
 const app: express.Express = express()
@@ -19,6 +20,7 @@ app.use(express.json())
 //initialze the Rest endpoints
 function initEndpoints() {
     initTransactionEndpoints(app);
+    initTransactionUtils();
 }
 
 initEndpoints();
