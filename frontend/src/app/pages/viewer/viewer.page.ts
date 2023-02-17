@@ -1,4 +1,6 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ViewChild } from '@angular/core';
+import { ToastController } from '@ionic/angular';
 import { HistoryData } from 'src/app/model/HistoryData';
 import { Transaction } from 'src/app/model/Transaction';
 import { Web3Service } from 'src/app/services/web3/web3.service';
@@ -20,30 +22,26 @@ export class ViewerPage {
   loading: boolean = false;
   expandedTx: string;
 
-  constructor(private web3: Web3Service) {
-  }
-
-  listenToConnection() {
-    this.web3.getWeb3ConnectionSubject$().subscribe((value) => {
-      this.connected = value
-      if(this.connected){
-      } 
-    })
-  }
+  constructor(private web3: Web3Service, private toastCtrl: ToastController) {}
 
   loadTransactions() {
-    this.publicKey = this.addressInput.el.value;
-    /*this.web3.getAllTransactions().subscribe((txs: Tx[]) => {
-      this.transactions = txs
-      console.log(this.transactions)
-
-    })*/
-    //@ts-ignore
     this.loading = true;
-    this.web3.getAllTransactions(this.publicKey).subscribe((history: HistoryData) => {
+    this.web3.getAllTransactions(this.addressInput.el.value).subscribe(
+      (history: HistoryData) => {
       this.history = history;
+      this.publicKey = history.publicKey;
       this.transactions = history.transactions
       this.loading = false;
+    },(err: HttpErrorResponse) => {
+      this.loading = false;
+      this.toastCtrl.create(
+        {
+          message: "Not a valid address",
+          position: "bottom",
+          color: "danger",
+          duration: 2000
+        }
+      ).then(t => t.present())
     })
   }
 
@@ -62,6 +60,11 @@ export class ViewerPage {
       case "sol":
         this.transactions = this.history.transactions.filter(tx => tx.type == "SOL_TRANSFER")
         break;
+      case "mint":
+        this.transactions = this.history.transactions.filter(tx => tx.type == "NFT_MINT")
+        break;
+      case "swap":
+        this.transactions = this.history.transactions.filter(tx => tx.type == "SWAP")
     }
   }
 
