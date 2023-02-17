@@ -18,7 +18,7 @@ export class ToolbarComponent{
 
    listenToPublicKey() {
     this.web3.getPublicKeySubject$().subscribe(value => {
-      this.pubKey = value.toString()
+      if(value) this.pubKey = value.toString()
     })
   }
 
