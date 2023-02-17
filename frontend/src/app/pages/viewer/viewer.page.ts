@@ -46,7 +46,6 @@ export class ViewerPage {
   }
 
   applyFilter() {
-    console.log(this.filter)
     switch(this.filter) {
       case "all":
         this.transactions = this.history.transactions;

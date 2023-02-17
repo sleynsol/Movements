@@ -20,7 +20,6 @@ export class SwapComponent implements OnInit {
   constructor(private web3: Web3Service) { }
 
   ngOnInit() {
-    console.log(this.transaction)
     this.inputToken = this.web3.getTokenMetadata(this.transaction.tokenTransfers.find(tx => tx.fromUserAccount == this.publicKey).mint)
     this.outputToken = this.web3.getTokenMetadata(this.transaction.tokenTransfers.find(tx => tx.toUserAccount == this.publicKey).mint)
   }
