@@ -13,18 +13,14 @@ export class ToolbarComponent{
   pubKey: string
 
   constructor(private web3: Web3Service) {
-    this.listenToConnection()
+    this.listenToPublicKey()
    }
 
-  listenToConnection() {
-    this.web3.getWeb3ConnectionSubject$().subscribe(value => {
-      this.connected = value
-      if(this.connected) this.pubKey = this.web3.getPublicKey().toString()
+   listenToPublicKey() {
+    this.web3.getPublicKeySubject$().subscribe(value => {
+      this.pubKey = value.toString()
     })
   }
 
-  connectWallet() {
-    this.web3.connectWallet()
-  }
 
 }

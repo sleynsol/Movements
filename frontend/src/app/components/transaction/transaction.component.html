@@ -16,7 +16,7 @@
       </div>
 
       <div class="tx-container" [ngClass]="isReceiver(transfer) ? 'tx-receive' : 'tx-sent' " *ngFor="let transfer of transaction.tokenTransfers">
-          <span>{{ transfer.tokenAmount }} {{getTokenSymbol()}}</span>
+          <span>{{ transfer.tokenAmount.toFixed(2) }} {{getTokenSymbol()}}</span>
       </div>
     </div>
 
@@ -55,7 +55,7 @@
           </div>
   
         <div class="tx-container" *ngFor="let transfer of transaction.tokenTransfers">
-            <span class="burn">- {{ transfer.tokenAmount }}</span>
+            <span class="burn">- {{ transfer.tokenAmount.toFixed(2) }}</span>
         </div>
       </div>
 
@@ -79,22 +79,12 @@
 
     </div>
 
-    <div class="card-wrapper" *ngSwitchCase="'SWAP'">
-      <!-- Token Transfer -->
-      <div class="header">
-        <ng-container class="token">
-          <img class="token" [src]="getTokenImage()" height="48" width="48"/>
-        </ng-container>
-
-        <div class="receive-info">
-          <span class="other">{{getOther(transaction.tokenTransfers[0])}}</span>
-          <span class="timestamp">{{transaction.timestamp | datetime}}</span>
-        </div>
+    <div class="swap-wrapper" *ngSwitchCase="'SWAP'">
+      <div class="swap-input">{{getInputTokenAmount()}} {{getInputTokenSymbol()}}</div>
+      <div class="swap-center">
+        <ion-icon name="swap-horizontal"></ion-icon>
       </div>
-
-      <div class="tx-container" [ngClass]="isReceiver(transfer) ? 'tx-receive' : 'tx-sent' " *ngFor="let transfer of transaction.tokenTransfers">
-          <span>{{ transfer.tokenAmount }} {{getTokenSymbol()}}</span>
-      </div>
+      <div class="swap-output">{{getOutputTokenAmount()}} {{getOutputTokenSymbol()}}</div>
     </div>
 
 
@@ -106,7 +96,16 @@
   </ng-container>
 
   <div *ngIf="expanded" class="info">
-    <span>extra info</span>
+    <div class="explorers">
+      <img src="assets/icon/solscan.ico"  (click)="showSolscan(transfer)" height="32" width="32">
+      <img src="assets/icon/solanafm.png"  (click)="showSolanaFM(transfer)" height="32" width="32">
+    </div>
+    <div class="details">
+      <span>Signature: {{transaction.signature.substr(0,12)}}</span>
+      <span>Source: {{transaction.source}}</span>
+      <span>Type: {{transaction.type}}</span>
+    </div>
+
   </div>
   
 </ion-card>

@@ -1,0 +1,18 @@
+<ion-card [ngClass]="expanded ? 'expanded' : ''">
+  <div class="card-wrapper">
+    <div class="header">
+      <ng-container class="token">
+        <img class="token" [src]="getNftImage()" height="48" width="48"/>
+      </ng-container>
+
+      <div class="receive-info">
+        <span class="other">{{getMarketplaceName()}}</span>
+        <span class="timestamp">{{transaction.timestamp | datetime}}</span>
+      </div>
+    </div>
+    <div class="tx-container" [ngClass]="event.buyer == publicKey ? 'nft-receive' : 'nft-sent'">
+        <span>{{getNftName()}} for {{ getSolAmount(event.amount) }} SOL</span>
+    </div>
+  </div>
+  <app-details *ngIf="expanded" [transaction]="transaction"></app-details>
+</ion-card>

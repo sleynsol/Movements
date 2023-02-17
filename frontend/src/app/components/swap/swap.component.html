@@ -1,0 +1,19 @@
+<ion-card [ngClass]="expanded ? 'expanded' : ''">
+  <div class="swap-wrapper">
+    <div class="swap-header">
+      <div class="swap-header-wrapper">
+        <img [src]="getExchangeIcon()" height="24" width="24">
+        <span class="timestamp">{{transaction.timestamp | datetime}}</span>
+      </div>
+    </div>
+    <div class="swap-container">
+      <div class="swap-input">{{getInputTokenAmount()}} {{getInputTokenSymbol()}}</div>
+      <div class="swap-center">
+        <ion-icon name="swap-horizontal"></ion-icon>
+      </div>
+      <div class="swap-output">{{getOutputTokenAmount()}} {{getOutputTokenSymbol()}}</div>
+    </div>
+
+  </div>
+  <app-details *ngIf="expanded" [transaction]="transaction"></app-details>
+</ion-card>

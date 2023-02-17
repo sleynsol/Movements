@@ -1,0 +1,21 @@
+<ion-card [ngClass]="expanded ? 'expanded' : ''">
+  <div class="card-wrapper">
+    <div class="header">
+      <ng-container class="token">
+        <img class="token" [src]="getNftImage()" height="48" width="48"/>
+      </ng-container>
+
+      <div class="receive-info">
+        <span class="other">
+          <ion-icon name="diamond-outline"></ion-icon>
+          Mint 
+        </span>
+        <span class="timestamp">{{transaction.timestamp | datetime}}</span>
+      </div>
+    </div>
+    <div class="tx-container mint-container">
+        <span>Minted {{getNftName()}} for {{ getSolAmount(event.amount) }} SOL</span>
+    </div>
+  </div>
+  <app-details *ngIf="expanded" [transaction]="transaction"></app-details>
+</ion-card>
