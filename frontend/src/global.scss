@@ -24,3 +24,147 @@
 @import "~@ionic/angular/css/text-alignment.css";
 @import "~@ionic/angular/css/text-transformation.css";
 @import "~@ionic/angular/css/flex-utils.css";
+
+
+ion-card {
+    padding: 16px;
+    height: 80px;
+    max-width: 560px;
+    transition: all 0.25s ease-in-out;
+  }
+
+.expanded {
+  height: 200px;
+
+  .info {
+    height: 100%;
+    display: grid;
+    grid-template-columns: 80%;
+    grid-template-rows: 35% 35%;
+    justify-content: center;
+    align-items: center;
+    animation: fade-in 0.2s ease-in-out;
+
+    @keyframes fade-in {
+      0%{opacity: 0;}
+      100%{opacity: 1;}
+    }
+
+    .explorers {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        cursor: pointer;
+      }
+    }
+
+    .details {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      }
+
+  }
+}
+
+.card-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 60% 40%;
+  justify-content: center;
+  align-items: center;
+}
+
+
+
+.header {
+  display: grid;
+  grid-template-columns: 30% 70%;
+  justify-content: center;
+  align-items: center;
+
+  img {
+    border-radius: 50%;
+  }
+
+  .receive-info {
+    display: grid;
+    height: 100%;
+    grid-template-rows: 50% 50%;
+    justify-items: flex-start;
+    align-items: center;
+  }
+  
+  .other {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    ion-icon {
+      padding-right: 8px;
+    }
+  }
+
+}
+
+.tx-container {
+  display: grid;
+  justify-items: flex-end;
+  align-items: center;
+  width: 100%;
+  text-align: center;
+}
+
+
+.tx-receive {
+  color: green;
+  >span {
+      &::before {
+      content: '+';
+      padding-right: 4px;
+    }
+  }
+}
+
+.tx-sent {
+  color: coral;
+  >span {
+      &::before {
+      content: '-';
+      padding-right: 4px;
+    }
+  }
+}
+
+
+.nft-receive {
+  color: coral;
+  >span {
+      &::before {
+      content: 'Bought';
+      padding-right: 4px;
+    }
+
+  }
+}
+
+.nft-sent {
+  color: green;
+  >span {
+      &::before {
+      content: 'Sold';
+      padding-right: 4px;
+    }
+  }
+}
+
+.nft-mint {
+  color: coral;
+}
+
+.burn {
+  color: coral
+}
