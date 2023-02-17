@@ -15,7 +15,10 @@ export function initTransactionUtils() {
 
 export async function getTransactionHistory(address: PublicKey) {
 
-   //return JSON.parse(String(fs.readFileSync("J:\\web3\\tx-viewer\\backend\\dist\\testdata.json")))
+    if(process.env.MODE == "DEV") {
+        return JSON.parse(String(fs.readFileSync("J:\\web3\\tx-viewer\\backend\\dist\\testdata.json")))
+    }
+    
     let res: AxiosResponse<TransactionRich[]> = await axios.get(
         `${HELIUS_API}/addresses/${address}/transactions`,
         {
