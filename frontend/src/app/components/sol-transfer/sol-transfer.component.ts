@@ -25,7 +25,9 @@ export class SolTransferComponent implements OnInit {
   }
 
   getSolAmount(amount: number) {
-    return Number(amount / LAMPORTS_PER_SOL).toFixed(2)
+    let amountFixed = Number(amount / LAMPORTS_PER_SOL)
+    if(amountFixed % 1 == 0) return amountFixed.toFixed(0)
+    return amountFixed.toFixed(2)
   }
   
   isReceiver(transfer) {

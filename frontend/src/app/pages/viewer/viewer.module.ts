@@ -6,6 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { Tab1PageRoutingModule } from './viewer-routing.module';
 import { ComponentsModule } from 'src/app/components/components.module';
 import { ViewerPage } from './viewer.page';
+import { PipesModule } from 'src/app/pipes/pipes.module';
 
 @NgModule({
   imports: [
@@ -13,7 +14,8 @@ import { ViewerPage } from './viewer.page';
     CommonModule,
     FormsModule,
     Tab1PageRoutingModule,
-    ComponentsModule
+    ComponentsModule,
+    PipesModule
   ],
   declarations: [ViewerPage]
 })

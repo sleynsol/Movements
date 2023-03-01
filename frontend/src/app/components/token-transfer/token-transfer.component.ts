@@ -24,6 +24,7 @@ export class TokenTransferComponent implements OnInit {
   }
 
   getOther(transfer) {
+    if(transfer.fromUserAccount.length == 0) return "an Airdrop"
     if(transfer.fromUserAccount == this.publicKey)
       return transfer.toUserAccount.substr(0,8);
 
@@ -36,9 +37,18 @@ export class TokenTransferComponent implements OnInit {
   }
   
   getTokenSymbol() {
-    if(this.token?.offChainData) return this.token.offChainData.symbol
-    if(this.token?.onChainData) return this.token.onChainData.data.symbol
-    if(this.token) return this.token.mint.substring(0,6)
+      if(this.token?.offChainData) {
+        if(this.token.offChainData.symbol) return this.token.offChainData.symbol
+        if(this.token.offChainData.name) return this.token.offChainData.name
+      }
+      if(this.token?.onChainData){
+        if(this.token.onChainData.symbol) return this.token.onChainData.data.symbol
+        if(this.token.onChainData.name) return this.token.onChainData.data.name
+        if(this.token.onChainData.data.symbol) return this.token.onChainData.data.symbol
+        if(this.token.onChainData.data.name) return this.token.onChainData.data.name
+      }
+      if(this.token?.mint?.length > 0) return this.token.mint.substring(0,6)
+      return "Unknown"
   }
 
   isReceiver(transfer) {

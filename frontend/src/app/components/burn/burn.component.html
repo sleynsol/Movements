@@ -2,18 +2,15 @@
   <div class="card-wrapper">
     <div class="header">
       <ng-container class="token">
-        <img class="token" src="assets/tokens/unknown.png" height="48" width="48"/>
+        <img class="token" [src]="getTokenImage()" height="48" width="48"/>
       </ng-container>
       <div class="receive-info">
-        <span class="other">
+        <div class="tx-container" [ngClass]="isReceiver(transfer) ? 'tx-receive' : 'tx-sent' " *ngFor="let transfer of transaction.tokenTransfers">
           <ion-icon name="flame-outline"></ion-icon>
-          Burn
-        </span>
+          <span>Burned {{(transfer.tokenAmount % 1) == 0 ? transfer.tokenAmount.toFixed(0) : transfer.tokenAmount.toFixed(2)}} {{getTokenSymbol()}}</span>
+        </div>
         <span class="timestamp">{{transaction.timestamp | datetime}}</span>
       </div>
-    </div>
-    <div class="tx-container" *ngFor="let transfer of transaction.tokenTransfers">
-      <span class="burn">- {{ transfer.tokenAmount.toFixed(2) }}</span>
     </div>
   </div>
   <app-details *ngIf="expanded" [transaction]="transaction"></app-details>

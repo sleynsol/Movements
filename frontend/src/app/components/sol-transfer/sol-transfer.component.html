@@ -6,13 +6,16 @@
       </ng-container>
 
       <div class="receive-info">
-        <span class="other">{{getOther(transaction.nativeTransfers[0])}}</span>
+        <div class="tx-container" [ngClass]="isReceiver(transfer) ? 'tx-receive' : 'tx-sent' " *ngFor="let transfer of transaction.nativeTransfers">
+          <span>
+            {{isReceiver(transfer) ? 'Received' : 'Transfered' }}
+            {{ getSolAmount(transfer.amount) }} SOL
+            {{isReceiver(transfer) ? 'from' : 'to' }}
+            {{getOther(transaction.nativeTransfers[0])}}
+          </span>
+      </div>
         <span class="timestamp">{{transaction.timestamp | datetime}}</span>
       </div>
-    </div>
-
-    <div class="tx-container" [ngClass]="isReceiver(transfer) ? 'tx-receive' : 'tx-sent' " *ngFor="let transfer of transaction.nativeTransfers">
-        <span>{{ getSolAmount(transfer.amount) }} SOL</span>
     </div>
   </div>
   <app-details *ngIf="expanded" [transaction]="transaction"></app-details>

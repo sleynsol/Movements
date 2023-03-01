@@ -63,24 +63,32 @@
 
       <div class="list-wrapper" *ngIf="!loading; else loadingScreen">
         <ion-list>
-          <ng-container *ngFor="let transaction of transactions">
-            <ng-container [ngSwitch]="transaction.type">
-              <app-swap *ngSwitchCase="'SWAP'" [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)"></app-swap>
-              <app-nft-mint *ngSwitchCase="'NFT_MINT'" [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)"></app-nft-mint>
-              <app-nft *ngSwitchCase="'NFT'" [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)"></app-nft>
-              <app-sol-transfer *ngSwitchCase="'SOL_TRANSFER'" [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)"></app-sol-transfer>
-              <app-token-transfer *ngSwitchCase="'TOKEN_TRANSFER'" [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)"></app-token-transfer>
-              <app-burn *ngSwitchCase="'BURN'" [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)"></app-burn>
-              <!--<app-transaction  [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)" ></app-transaction>-->
-            </ng-container>
+          <ng-container *ngFor="let txGroup of groupedTransactions">
+
+            <ion-list-header>
+              <ion-label>{{txGroup.date | dateyear}}</ion-label>
+            </ion-list-header>
+
+            <ng-container *ngFor="let transaction of txGroup.transactions">
+              <ng-container [ngSwitch]="transaction.type">
+                <app-swap *ngSwitchCase="'SWAP'" [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)"></app-swap>
+                <app-nft-mint *ngSwitchCase="'NFT_MINT'" [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)"></app-nft-mint>
+                <app-nft *ngSwitchCase="'NFT'" [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)"></app-nft>
+                <app-sol-transfer *ngSwitchCase="'SOL_TRANSFER'" [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)"></app-sol-transfer>
+                <app-token-transfer *ngSwitchCase="'TOKEN_TRANSFER'" [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)"></app-token-transfer>
+                <app-burn *ngSwitchCase="'BURN'" [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)"></app-burn>
+                <!--<app-transaction  [transaction]="transaction" [publicKey]="publicKey" [expanded]="isExpanded(transaction)" (click)="expand(transaction)" ></app-transaction>-->
+              </ng-container>
           </ng-container>
+        </ng-container>
+
         </ion-list>
      </div>
 
       <ng-template #loadingScreen>
         <div class="loading-screen">
           <ion-spinner name="dots"></ion-spinner>
-          <span>Loading Transactions</span>
+          <span>Loading Movements</span>
         </div>
       </ng-template>
 
