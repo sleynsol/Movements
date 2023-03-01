@@ -1,4 +1,4 @@
-import { Connection, LAMPORTS_PER_SOL, PublicKey, Transaction } from "@solana/web3.js";
+import { Connection, PublicKey } from "@solana/web3.js";
 import axios, {AxiosResponse} from 'axios';
 import { HELIUS_API, RPC_URL } from "../constants/constants";
 import { TransactionRich } from "../model/TransactionRich";
@@ -130,7 +130,7 @@ function getType(transaction: TransactionRich) {
         if(transaction.events.nft.type == "NFT_MINT") return "NFT_MINT"
         return "NFT"
     }
-    if(transaction.type == "TRANSFER") {
+    if(["TRANSFER", "TOKEN_MINT"].includes(transaction.type)) {
         if(transaction.tokenTransfers.length == 0) return "SOL_TRANSFER"
         return "TOKEN_TRANSFER"
     }
