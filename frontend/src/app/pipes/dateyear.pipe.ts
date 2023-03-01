@@ -2,12 +2,12 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { format } from 'date-fns';
 
 @Pipe({
-  name: 'datetime'
+  name: 'dateyear'
 })
-export class DatetimePipe implements PipeTransform {
+export class DatePipe implements PipeTransform {
 
   transform(value: number, ...args: unknown[]): unknown {
-    return format(new Date(value * 1000), 'HH:mm')
+    return format(new Date(value * 1000), 'dd MMM y')
   }
 
 }
