@@ -1,6 +1,6 @@
 import { Connection, PublicKey } from "@solana/web3.js";
 import axios, {AxiosResponse} from 'axios';
-import { HELIUS_API, RPC_URL } from "../constants/constants";
+import { HELIUS_API } from "../constants/constants";
 import { TransactionRich } from "../model/TransactionRich";
 import * as _ from 'lodash'
 import * as fs from 'fs'
@@ -9,7 +9,7 @@ import * as bonfida from '@bonfida/spl-name-service'
 var CONNECTION: Connection
 
 export function initTransactionUtils() {
-    CONNECTION = new Connection(RPC_URL, "confirmed")
+    CONNECTION = new Connection(process.env.RPC_URL, "confirmed")
 }
 
 
