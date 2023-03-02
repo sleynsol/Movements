@@ -53,16 +53,16 @@ export class Web3Service {
 
   getTokenSymbol(token: Token) {
     if(token?.onChainMetadata?.metadata) {
-      if(token.onChainMetadata.metadata.data?.symbol) return token.onChainMetadata.metadata.data.symbol
-      if(token.onChainMetadata.metadata.data?.name) return token.onChainMetadata.metadata.data.name
+      if(token.onChainMetadata.metadata.data?.symbol?.length > 1) return token.onChainMetadata.metadata.data.symbol
+      if(token.onChainMetadata.metadata.data?.name?.length > 1) return token.onChainMetadata.metadata.data.name
     }
     if(token?.offChainMetadata?.metadata){
-      if(token?.offChainMetadata?.metadata.symbol) return token?.offChainMetadata?.metadata.symbol
-      if(token?.offChainMetadata?.metadata.name) return token?.offChainMetadata?.metadata.name
+      if(token?.offChainMetadata?.metadata.symbol?.length > 1) return token?.offChainMetadata?.metadata.symbol
+      if(token?.offChainMetadata?.metadata.name?.length > 1) return token?.offChainMetadata?.metadata.name
     }
     if(token?.legacyMetadata) {
-      if(token.legacyMetadata.symbol) return token.legacyMetadata.symbol
-      if(token.legacyMetadata.name) return token.legacyMetadata.name
+      if(token.legacyMetadata.symbol?.length > 1) return token.legacyMetadata.symbol
+      if(token.legacyMetadata.name?.length > 1) return token.legacyMetadata.name
     }
 
     if(token?.onChainAccountInfo.accountInfo.key.length > 0) return token?.onChainAccountInfo.accountInfo.key.substring(0,6)
