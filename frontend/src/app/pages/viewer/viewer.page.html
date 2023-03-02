@@ -5,7 +5,7 @@
     </ion-toolbar>
   </ion-header>
   <ion-content class="ion-padding">
-    <ion-radio-group [(ngModel)]="filter" (ngModelChange)="applyFilter()" class="filter-list">
+    <ion-radio-group [(ngModel)]="filter" (ngModelChange)="applyFilter(filter)" class="filter-list">
       <ion-item>
         <ion-radio value="all"></ion-radio>
         <ion-label>All</ion-label>
@@ -40,7 +40,7 @@
 
 <div id="main-menu">
   <ion-header [translucent]="true">
-    <app-toolbar></app-toolbar>
+    <app-toolbar [showFilter]="showDesktopFilter()" (filter)="applyFilter($event)"></app-toolbar>
   </ion-header>
 
   <ion-content [fullscreen]="true">
@@ -94,5 +94,6 @@
 
     </div>
 
+ 
   </ion-content>
 </div>

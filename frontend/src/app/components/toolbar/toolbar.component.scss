@@ -1,0 +1,19 @@
+.desktop-filter-wrapper {
+    min-width: 200px;
+    position: absolute;
+    left: 0;
+    bottom: calc(-100vh + 56px);
+  
+    animation: come-in 0.7s ease-out;
+  
+    @keyframes come-in {
+      0%{transform: translateX(-200px);}
+      100%{transform: translateX(0px);}
+    }
+  
+    .desktop-filter-container {
+      position: sticky;
+      top: 0;
+      left: 0;
+    }
+  }

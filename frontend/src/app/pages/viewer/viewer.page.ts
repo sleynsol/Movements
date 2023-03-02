@@ -25,8 +25,12 @@ export class ViewerPage {
   filter: string = "all";
   loading: boolean = false;
   expandedTx: string;
+  smallScreen: boolean = false;
 
-  constructor(private web3: Web3Service, private toastCtrl: ToastController) {}
+
+  constructor(private web3: Web3Service, private toastCtrl: ToastController) {
+    if(window.innerWidth <= 768) this.smallScreen = true 
+  }
 
   loadTransactions() {
     this.loading = true;
@@ -50,8 +54,8 @@ export class ViewerPage {
     })
   }
 
-  applyFilter() {
-    switch(this.filter) {
+  applyFilter(value: string) {
+    switch(value) {
       case "all":
         this.transactions = this.history.transactions;
         break;
@@ -96,4 +100,9 @@ export class ViewerPage {
   isExpanded(transaction: Transaction) {
     return this.expandedTx == transaction.signature;
   }
+
+  showDesktopFilter() {
+    return !this.smallScreen && !this.loading && this.transactions
+  }
+
 }
