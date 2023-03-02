@@ -28,6 +28,7 @@ export async function getTransactionHistory(address: PublicKey) {
 
     let txs = res.data
     .filter(d => d.transactionError == null)
+    .filter(d => d.type != "MIGRATE_TO_PNFT")
     .map(tr => parseTransaction(tr, address))
 
     let nfts = []
