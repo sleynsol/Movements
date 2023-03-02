@@ -40,7 +40,7 @@ export class NftMintComponent implements OnInit {
   }
   getSolAmount(amount: number) {
     let amountFixed = Number(amount / LAMPORTS_PER_SOL)
-    if(amountFixed % 1 == 0) return amountFixed.toFixed(0)
+    if(amountFixed % 1 == 0) return amountFixed.toLocaleString()
     return amountFixed.toFixed(2)
   }
 

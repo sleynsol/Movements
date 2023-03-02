@@ -9,7 +9,7 @@
         <div class="tx-container" [ngClass]="isReceiver(transfer) ? 'tx-receive' : 'tx-sent' " *ngFor="let transfer of transaction.tokenTransfers">
           <span>
             {{isReceiver(transfer) ? 'Received' : 'Transfered' }}
-            {{ transfer.tokenAmount % 1 == 0 ? transfer.tokenAmount.toFixed(0): transfer.tokenAmount.toFixed(2) }} {{getTokenSymbol()}}
+            {{ transfer.tokenAmount % 1 == 0 ? transfer.tokenAmount.toLocaleString(): transfer.tokenAmount.toFixed(2) }} {{getTokenSymbol()}}
             {{isReceiver(transfer) ? 'from' : 'to' }}
             <span *ngIf="transfer.fromUserAccount.length == 0; else otherLink">an Airdrop</span>
             <ng-template #otherLink>

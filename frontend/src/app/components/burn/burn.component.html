@@ -7,7 +7,7 @@
       <div class="receive-info">
         <div class="tx-container" [ngClass]="isReceiver(transfer) ? 'tx-receive' : 'tx-sent' " *ngFor="let transfer of transaction.tokenTransfers">
           <ion-icon name="flame-outline"></ion-icon>
-          <span>Burned {{(transfer.tokenAmount % 1) == 0 ? transfer.tokenAmount.toFixed(0) : transfer.tokenAmount.toFixed(2)}} {{getTokenSymbol()}}</span>
+          <span>Burned {{(transfer.tokenAmount % 1) == 0 ? transfer.tokenAmount.toLocaleString() : transfer.tokenAmount.toFixed(2)}} {{getTokenSymbol()}}</span>
         </div>
         <span class="timestamp">{{transaction.timestamp | datetime}}</span>
       </div>
