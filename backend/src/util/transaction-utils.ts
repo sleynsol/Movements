@@ -46,6 +46,7 @@ export async function getTransactionHistory(address: PublicKey) {
     }
 
     tokens = _.uniq(tokens).filter(token => !nfts.includes(token));
+    nfts = _.uniq(nfts)
 
     let nftMetadata = await getNftMetadata(nfts);
     let tokenMetadata = await getTokenMetadata(tokens);
