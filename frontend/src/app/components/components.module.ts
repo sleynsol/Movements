@@ -4,7 +4,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { ToolbarComponent } from './toolbar/toolbar.component';
-import { TransactionComponent } from './transaction/transaction.component';
 import { PipesModule } from '../pipes/pipes.module';
 import { TokenTransferComponent } from './token-transfer/token-transfer.component';
 import { SolTransferComponent } from './sol-transfer/sol-transfer.component';
@@ -23,7 +22,6 @@ import { NftMintComponent } from './nft-mint/nft-mint.component';
   ],
   declarations: [
     ToolbarComponent,
-    TransactionComponent,
     TokenTransferComponent,
     SolTransferComponent,
     NftComponent,
@@ -34,7 +32,6 @@ import { NftMintComponent } from './nft-mint/nft-mint.component';
   ],
   exports: [
     ToolbarComponent,
-    TransactionComponent,
     TokenTransferComponent,
     SolTransferComponent,
     NftComponent,

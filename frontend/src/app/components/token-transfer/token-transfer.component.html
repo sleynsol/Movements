@@ -2,7 +2,7 @@
   <div class="card-wrapper">
     <div class="header">
       <ng-container class="token">
-        <img class="token" [src]="getTokenImage()" height="48" width="48"/>
+        <img class="token nft-token" [src]="getTokenImage()" (click)="showToken()" height="48" width="48"/>
       </ng-container>
 
       <div class="receive-info">
@@ -11,7 +11,10 @@
             {{isReceiver(transfer) ? 'Received' : 'Transfered' }}
             {{ transfer.tokenAmount % 1 == 0 ? transfer.tokenAmount.toFixed(0): transfer.tokenAmount.toFixed(2) }} {{getTokenSymbol()}}
             {{isReceiver(transfer) ? 'from' : 'to' }}
-            {{getOther(transaction.tokenTransfers[0])}}
+            <span *ngIf="transfer.fromUserAccount.length == 0; else otherLink">an Airdrop</span>
+            <ng-template #otherLink>
+              <a target="_blank" [href]="getOtherLink(transaction.tokenTransfers[0])">{{getOther(transaction.tokenTransfers[0])}}</a>
+            </ng-template>
           </span>
         </div>
         

@@ -2,13 +2,16 @@
   <div class="card-wrapper">
     <div class="header">
       <ng-container class="token">
-        <img class="token" [src]="getNftImage()" height="48" width="48"/>
+        <img class="token nft-token" [src]="getNftImage()" (click)="showNft()" height="48" width="48"/>
       </ng-container>
 
       <div class="receive-info">
         <div class="tx-container mint-container">
           <ion-icon name="diamond-outline"></ion-icon>
-          <span>Minted {{getNftName()}} for {{ getSolAmount(event.amount) }} SOL</span>
+          <span *ngIf="isFeePayer(); else airdropped">Minted {{getNftName()}} for {{ getSolAmount(event.amount) }} SOL</span>
+          <ng-template #airdropped>
+            <span>Received {{getNftName()}} as an Airdrop</span>
+          </ng-template>
         </div>
         <span class="timestamp">{{transaction.timestamp | datetime}}</span>
       </div>

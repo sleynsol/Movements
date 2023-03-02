@@ -46,6 +46,11 @@ ion-card {
     &:hover {
       transform: scale(1);
     }
+
+    a {
+      color: unset;
+    }
+
   }
 
 .expanded {
@@ -134,6 +139,10 @@ ion-card {
 
 .nft-mint {
   color: coral;
+}
+
+.nft-token {
+  cursor: pointer;
 }
 
 .burn {

@@ -25,23 +25,19 @@ export class SwapComponent implements OnInit {
   }
 
   getInputTokenSymbol() {
-    if(this.inputToken?.offChainData) return this.inputToken.offChainData.symbol
-    if(this.inputToken?.onChainData) return this.inputToken.onChainData.data.symbol
-    if(this.inputToken) return this.inputToken.mint.substring(0,6)
+    return this.web3.getTokenSymbol(this.inputToken)
   }
-
+  
   getOutputTokenSymbol() {
-    if(this.outputToken?.offChainData) return this.outputToken.offChainData.symbol
-    if(this.outputToken?.onChainData) return this.outputToken.onChainData.data.symbol
-    if(this.outputToken) return this.outputToken.mint.substring(0,6)
+    return this.web3.getTokenSymbol(this.outputToken)
   }
 
   getInputTokenAmount() {
-    return Number(this.transaction.tokenTransfers.find(t => t.mint == this.inputToken.mint).tokenAmount).toFixed(2)
+    return Number(this.transaction.tokenTransfers.find(t => t.mint == this.inputToken.account).tokenAmount).toFixed(2)
   }
 
   getOutputTokenAmount() {
-    return Number(this.transaction.tokenTransfers.find(t => t.mint == this.outputToken.mint).tokenAmount).toFixed(2)
+    return Number(this.transaction.tokenTransfers.find(t => t.mint == this.outputToken.account).tokenAmount).toFixed(2)
   }
 
   getExchangeIcon() {

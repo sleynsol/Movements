@@ -38,12 +38,59 @@ export class Web3Service {
   }
 
   getTokenMetadata(mint: string) {
-    return this.tokens.find((token: Token) => token.mint == mint)
+    return this.tokens.find((token: Token) => token.account == mint)
   }
 
   getNftMetadata(mint: string) {
-    return this.nfts.find((nft: Token) => nft.mint == mint) 
+    return this.nfts.find((nft: Token) => nft.account == mint) 
   }
 
+  getTokenImage(token: Token) {
+    if(token?.offChainMetadata?.metadata?.image) return token.offChainMetadata.metadata.image
+    if(token?.legacyMetadata?.logoURI) return token.legacyMetadata.logoURI
+    return "assets/tokens/unknown.png"
+  }
+
+  getTokenSymbol(token: Token) {
+    if(token?.onChainMetadata?.metadata) {
+      if(token.onChainMetadata.metadata.data?.symbol) return token.onChainMetadata.metadata.data.symbol
+      if(token.onChainMetadata.metadata.data?.name) return token.onChainMetadata.metadata.data.name
+    }
+    if(token?.offChainMetadata?.metadata){
+      if(token?.offChainMetadata?.metadata.symbol) return token?.offChainMetadata?.metadata.symbol
+      if(token?.offChainMetadata?.metadata.name) return token?.offChainMetadata?.metadata.name
+    }
+    if(token?.legacyMetadata) {
+      if(token.legacyMetadata.symbol) return token.legacyMetadata.symbol
+      if(token.legacyMetadata.name) return token.legacyMetadata.name
+    }
+
+    if(token?.onChainAccountInfo.accountInfo.key.length > 0) return token?.onChainAccountInfo.accountInfo.key.substring(0,6)
+    return "Unknown"
+  }
+
+  getNftName(token: Token) {
+    if(token?.onChainMetadata?.metadata) {
+      if(token.onChainMetadata.metadata.data?.name) return token.onChainMetadata.metadata.data.name
+    }
+    if(token?.offChainMetadata?.metadata){
+      if(token?.offChainMetadata?.metadata.name) return token?.offChainMetadata?.metadata.name
+    }
+    if(token?.legacyMetadata) {
+      if(token.legacyMetadata.name) return token.legacyMetadata.name
+    }
+    if(token?.onChainMetadata?.metadata) {
+      if(token.onChainMetadata.metadata.data?.symbol) return token.onChainMetadata.metadata.data.symbol
+    }
+    if(token?.offChainMetadata?.metadata){
+      if(token?.offChainMetadata?.metadata.symbol) return token?.offChainMetadata?.metadata.symbol
+    }
+    if(token?.legacyMetadata) {
+      if(token.legacyMetadata.symbol) return token.legacyMetadata.symbol
+    }
+
+    if(token?.onChainAccountInfo.accountInfo.key.length > 0) return token?.onChainAccountInfo.accountInfo.key.substring(0,6)
+    return "Unknown"
+  }
 }
 

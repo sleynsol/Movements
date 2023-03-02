@@ -2,12 +2,12 @@
   <div class="card-wrapper">
     <div class="header">
       <ng-container class="token">
-        <img class="token" [src]="getNftImage()" height="48" width="48"/>
+        <img class="token nft-token" [src]="getNftImage()" (click)="showNft()" height="48" width="48"/>
       </ng-container>
 
       <div class="receive-info">
-        <div class="tx-container" [ngClass]="event.buyer == publicKey ? 'nft-receive' : 'nft-sent'">
-          <span>{{getNftName()}} for {{ getSolAmount(event.amount) }} SOL on {{getMarketplaceName()}}</span>
+        <div class="tx-container" [ngClass]="getClassByNftType()">
+          <span>{{getTextByNftType()}}</span>
         </div>
         <span class="timestamp">{{transaction.timestamp | datetime}}</span>
       </div>

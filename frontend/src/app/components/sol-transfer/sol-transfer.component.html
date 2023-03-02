@@ -11,7 +11,7 @@
             {{isReceiver(transfer) ? 'Received' : 'Transfered' }}
             {{ getSolAmount(transfer.amount) }} SOL
             {{isReceiver(transfer) ? 'from' : 'to' }}
-            {{getOther(transaction.nativeTransfers[0])}}
+            <a target="_blank" [href]="getOtherLink(transaction.nativeTransfers[0])">{{getOther(transaction.nativeTransfers[0])}}</a>
           </span>
       </div>
         <span class="timestamp">{{transaction.timestamp | datetime}}</span>

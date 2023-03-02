@@ -24,6 +24,11 @@ export class SolTransferComponent implements OnInit {
     return transfer.fromUserAccount.substr(0,8)
   }
 
+  getOtherLink(transfer) {
+    if(transfer.fromUserAccount == this.publicKey) return `https://solscan.io/account/${transfer.toUserAccount}`
+    return `https://solscan.io/account/${transfer.fromUserAccount}`
+  }
+
   getSolAmount(amount: number) {
     let amountFixed = Number(amount / LAMPORTS_PER_SOL)
     if(amountFixed % 1 == 0) return amountFixed.toFixed(0)

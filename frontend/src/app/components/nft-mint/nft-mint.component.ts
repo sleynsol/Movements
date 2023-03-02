@@ -22,22 +22,22 @@ export class NftMintComponent implements OnInit {
 
   constructor(private web3: Web3Service) { }
 
+  showNft() {
+    window.open(`https://solscan.io/token/${this.token.account}`, "_blank")
+  }
+
   ngOnInit() {
     this.event = this.transaction.nft;
     this.token = this.web3.getNftMetadata(this.event.nfts[0].mint)
   }
 
   getNftImage() {
-    if(!this.token || !this.token.offChainData) return "assets/tokens/unknown.png"
-    return this.token.offChainData.image
+    return this.web3.getTokenImage(this.token)
   }
-
+  
   getNftName() {
-    if(this.nft?.offChainData) return this.token.offChainData.name
-    if(this.token?.onChainData) return this.token.onChainData.data.name
-    return ""
+    return this.web3.getNftName(this.token)
   }
-
   getSolAmount(amount: number) {
     let amountFixed = Number(amount / LAMPORTS_PER_SOL)
     if(amountFixed % 1 == 0) return amountFixed.toFixed(0)
@@ -55,6 +55,10 @@ export class NftMintComponent implements OnInit {
       default:
         return this.event.source
     }
+  }
+
+  isFeePayer() {
+    return this.event.feePayer == this.publicKey
   }
 
 }
