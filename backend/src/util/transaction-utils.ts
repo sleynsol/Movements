@@ -166,12 +166,12 @@ function extractTokenTransfers(transaction: TransactionRich, address: string) {
 }
 
 async function getNftMetadata(mints: string[]) {
-    let res: AxiosResponse = await axios.post(`${HELIUS_API}/tokens/metadata`, {mintAccounts: mints}, {params: {"api-key": process.env.HELIUS_API_KEY}})
+    let res: AxiosResponse = await axios.post(`${HELIUS_API}/token-metadata`, {"mintAccounts": mints, includeOffChain: true}, {params: {"api-key": process.env.HELIUS_API_KEY}})
     return res.data;
 }
 
 async function getTokenMetadata(mints: string[]) {
-    let res: AxiosResponse = await axios.post(`${HELIUS_API}/tokens/metadata`, {"mintAccounts": mints}, {params: {"api-key": process.env.HELIUS_API_KEY}})
+    let res: AxiosResponse = await axios.post(`${HELIUS_API}/token-metadata`, {"mintAccounts": mints, includeOffChain: true}, {params: {"api-key": process.env.HELIUS_API_KEY}})
     return res.data;
 }
 
