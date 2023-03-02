@@ -31,9 +31,9 @@ export class TokenTransferComponent implements OnInit {
   getOther(transfer) {
     if(transfer.fromUserAccount.length == 0) return "an Airdrop"
     if(transfer.fromUserAccount == this.publicKey)
-      return transfer.toUserAccount.substr(0,8);
+      return `${transfer.toUserAccount.substr(0,4)}...${transfer.toUserAccount.substr(-4)}`;
 
-    return transfer.fromUserAccount.substr(0,8)
+    return `${transfer.fromUserAccount.substr(0,4)}...${transfer.fromUserAccount.substr(-4)}`
   }
 
   getOtherLink(transfer) {

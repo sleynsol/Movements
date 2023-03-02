@@ -13,7 +13,6 @@
     margin: 8px;
     border-radius: 16px;
     box-shadow: 0px 0px 2px 0px lightgray;
-    outline: 1px solid lightgray;
 
     ion-label {
         display: flex;
@@ -34,33 +33,6 @@ ion-list-header {
     align-items: center;
 }
 
-.filter-list {
-
-    ion-label {
-        padding: 0 8px;
-    }
-
-    ion-radio {
-        --border-radius: 4px;
-        --inner-border-radius: 4px;
-      
-        --color: #ddd;
-        --color-checked: #6815ec;
-      }
-      
-      ion-radio.ios {
-        width: 20px;
-        height: 20px;
-      
-        border: 2px solid #ddd;
-        border-radius: 4px;
-      }
-      
-      .radio-checked.ios {
-        border-color: #6815ec;
-      }
-
-}
 
 .loading-screen {
   display: flex;

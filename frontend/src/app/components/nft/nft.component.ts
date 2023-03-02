@@ -73,7 +73,7 @@ export class NftComponent implements OnInit {
       case "HADESWAP":
         return "Hadeswap";
       default:
-        return this.event.source
+        return this.event.source.replaceAll('_',' ')
     }
   }
 

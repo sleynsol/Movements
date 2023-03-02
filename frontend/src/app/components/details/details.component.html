@@ -1,13 +1,11 @@
 <div class="info">
   <hr>
   <div class="details">
-    <span>Source: {{transaction.source}}</span>
-    <span>Type: {{transaction.type}}</span>
+    <span>Source: {{transaction.source.replaceAll('_',' ')}}</span>
+    <span>Type: {{transaction.type.replaceAll('_',' ')}}</span>
   </div>
   <div class="explorers">
     <img src="assets/icon/solscan.ico"  (click)="showSolscan()" height="32" width="32">
     <img src="assets/icon/solanafm.png"  (click)="showSolanaFM()" height="32" width="32">
   </div>
-
-
 </div>
